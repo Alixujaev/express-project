@@ -4,6 +4,11 @@ import AuthRoutes from "./src/routes/auth.js"
 import ProductsRoutes from "./src/routes/products.js"
 import mongoose from "mongoose";
 import * as dotenv from 'dotenv'
+import session from "express-session";
+import flash from "connect-flash"
+import { auth } from "./src/middleware/auth.js";
+import cookieParser from "cookie-parser";
+
 dotenv.config()
 
 const app = express()
@@ -18,7 +23,10 @@ app.set('view engine', 'hbs');
 app.set('views', './src');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(session({resave: false, saveUninitialized: false, secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
+app.use(flash());
+app.use(cookieParser())
+app.use(auth);
 
 app.use(AuthRoutes)
 app.use(ProductsRoutes)
