@@ -2,24 +2,49 @@ import { Router } from "express";
 import Product from "../models/Product.js"
 import { checkAuth } from "../middleware/auth.js";
 import { getUser } from "../middleware/user.js";
+import {ObjectId} from "mongodb" 
+import User from "../models/User.js";
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.get("/", getUser, async (req, res) => {
+  const products = await Product.find({}).lean()
   res.render("index", {
-    products: await Product.find({}).lean()
+    products: products.reverse(),
+    userId: req.userId ? req.userId.toString() : null
   })
 })
 
 router.get("/add", checkAuth, (req, res) => {
+  
   res.render("add", {
     addProductError: req.flash("addProductError")
   })
 })
 
-router.get("/products", (req, res) => {
-  res.render("products")
+router.get("/my-products", getUser, async(req, res) => {
+  const user = req.userId ? req.userId.toString() : null
+  const products = await Product.find({user}).lean()
+
+  res.render("products", {
+    products
+  })
 })
+
+
+router.get("/products/:id", getUser, async (req, res) => {
+  const {id} = req.params
+  const product = await Product.findOne({_id: new ObjectId(id)}).lean()
+  const author = await User.findOne({_id: new ObjectId(product.user)}).lean()
+
+  console.log(author);
+
+  res.render("product", {
+    product: {...product, author_firstname: author.firstname, author_lastname: author.lastname},
+    userId: req.userId ? req.userId.toString() : null
+  })
+})
+
 
 
 router.post("/add-product", getUser, async (req, res) => {

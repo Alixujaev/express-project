@@ -1,1 +1,31 @@
-<h1>Products</h1>
+<h1 class="text-4xl text-gray-900 mb-5">My products</h1>
+<div class="mb-5">
+  {{#if products.length}}
+    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {{#each products}}
+        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <img class="w-full" src={{image}} alt="Sunset in the mountains">
+        <div class="px-6 py-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-xl mb-2">{{title}}</h3>
+          <h3 class="font-bold text-xl mb-2">{{price}}.00$</h3>
+          </div>
+        </div>
+        <div class="px-6 pt-4 pb-2 flex justify-between">
+          <button onclick="location.href='/products/{{_id}}'" class="inline-block bg-gray-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">View details</button>
+          {{#if @root.token}}
+          {{#ifequal @root.userId user}}
+          <div>
+            <button class="inline-block bg-yellow-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Edit</button>
+          <button class="inline-block bg-red-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Delete</button>
+          </div>
+          {{/ifequal}}
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No products</p>
+  {{/if}}
+</div>

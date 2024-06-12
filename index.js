@@ -8,6 +8,7 @@ import session from "express-session";
 import flash from "connect-flash"
 import { auth } from "./src/middleware/auth.js";
 import cookieParser from "cookie-parser";
+import ifequal from "./src/helpers/index.js"
 
 dotenv.config()
 
@@ -15,7 +16,8 @@ const app = express()
 
 const hbs = create({
   defaultLayout: 'main',
-  extname: 'hbs'
+  extname: 'hbs',
+  helpers: ifequal
 })
 
 app.engine('hbs', hbs.engine);

@@ -1,0 +1,25 @@
+{{#with product}}
+<div class="flex gap-4 items-center justify-between">
+  <h1 class="text-4xl text-gray-900 mb-5">{{title}}</h1>
+  <button onclick="location.href='/'" class="inline-block bg-gray-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Back</button>
+</div>
+<div class="mb-5">
+ <div class=" rounded overflow-hidden shadow-lg flex">
+  <img class="w-72 h-auto object-cover object-center" src={{image}} alt="Sunset in the mountains">
+  <div class="flex flex-col justify-between px-6 py-4">
+    <h3 class="font-bold text-xl mb-2">{{price}}.00$</h3>
+    <p class="mb-3">{{description}}</p>
+    <p><span class="font-bold">Last update:</span> {{formatDate updatedAt}}</p>
+    <p><span class="font-bold">Author:</span> {{author_firstname}} {{author_lastname}}</p>
+      {{#if @root.token}}
+        {{#ifequal @root.userId user}}
+        <div class="mt-4 flex gap-3">
+          <button class="inline-block bg-yellow-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 ">Edit</button>
+        <button class="inline-block bg-red-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 ">Delete</button>
+        </div>
+        {{/ifequal}}
+        {{/if}}
+  </div>
+</div>
+</div>
+{{/with}}
