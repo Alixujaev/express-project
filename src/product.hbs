@@ -14,8 +14,8 @@
       {{#if @root.token}}
         {{#ifequal @root.userId user}}
         <div class="mt-4 flex gap-3">
-          <button class="inline-block bg-yellow-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 ">Edit</button>
-        <button class="inline-block bg-red-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 ">Delete</button>
+          <button onclick="location.href='/edit/{{_id}}'" class="inline-block bg-yellow-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 ">Edit</button>
+        <button onclick="location.href='/delete/{{_id}}" class="inline-block bg-red-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 ">Delete</button>
         </div>
         {{/ifequal}}
         {{/if}}

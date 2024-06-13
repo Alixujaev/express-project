@@ -16,8 +16,8 @@
           {{#if @root.token}}
           {{#ifequal @root.userId user}}
           <div>
-            <button class="inline-block bg-yellow-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Edit</button>
-          <button class="inline-block bg-red-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Delete</button>
+            <button onclick="location.href='/edit/{{_id}}'" class="inline-block bg-yellow-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Edit</button>
+          <button onclick="location.href='/delete/{{_id}}" class="inline-block bg-red-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Delete</button>
           </div>
           {{/ifequal}}
           {{/if}}

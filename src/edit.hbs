@@ -1,0 +1,47 @@
+<div class="flex min-h-full flex-col px-6 py-12 lg:px-8">
+    <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">Update Product</h2>
+
+
+      {{#with product}}
+  <div class="mt-10 w-full">
+    <form class="space-y-6 w-full" action="/edit/{{_id}}" method="POST">
+      <div>
+        <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
+        <div class="mt-2">
+          <input value="{{title}}" id="title" name="title" type="text" autocomplete="title" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6 outline-none px-2">
+        </div>
+      </div>
+
+       <div>
+        <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+        <div class="mt-2">
+          <input value="{{description}}" id="description" name="description" type="text" autocomplete="description" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6 outline-none px-2">
+        </div>
+      </div>
+      <div>
+        <label for="image" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
+        <div class="mt-2">
+          <input value="{{image}}" id="image" name="image" type="text" autocomplete="image" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6 outline-none px-2">
+        </div>
+      </div>
+
+       <div>
+        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
+        <div class="mt-2">
+          <input value="{{price}}" id="price" name="price" type="text" autocomplete="price" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6 outline-none px-2">
+        </div>
+      </div>
+
+       <p class="mt-5">
+        {{#if updateError}}
+        {{updateError}}
+      {{/if}}
+      </p>
+
+      <div>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg--gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Update product</button>
+      </div>
+    </form>
+  </div>
+      {{/with}}
+</div>
