@@ -15,9 +15,11 @@
           <button onclick="location.href='/products/{{_id}}'" class="inline-block bg-gray-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">View details</button>
           {{#if @root.token}}
           {{#ifequal @root.userId user}}
-          <div>
+          <div class="flex">
             <button onclick="location.href='/edit/{{_id}}'" class="inline-block bg-yellow-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Edit</button>
-          <button onclick="location.href='/delete/{{_id}}" class="inline-block bg-red-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Delete</button>
+            <form action="/delete/{{_id}}" method="POST">
+          <button class="inline-block bg-red-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Delete</button>
+            </form>
           </div>
           {{/ifequal}}
           {{/if}}
